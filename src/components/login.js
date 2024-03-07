@@ -194,7 +194,7 @@ function Login() {
 							size="lg"
 							className="w-fit bg-brand-accent"
 						>
-							Let's Go
+							Let&apos;s Go
 						</Button>
 
 						<Button
