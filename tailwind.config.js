@@ -17,6 +17,7 @@ module.exports = withMT({
 					base: "#EFEDEA",
 					surface: "#292524",
 					accent: "#26A269",
+					accent2: "#FF6961",
 				},
 			},
 		},

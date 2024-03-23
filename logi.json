@@ -1,0 +1,25 @@
+{
+	"uid": "pZIkJ70ldzQafHFoUJ08ZpNWVGy2",
+	"email": "ues@gmail.com",
+	"emailVerified": false,
+	"isAnonymous": false,
+	"providerData": [
+		{
+			"providerId": "password",
+			"uid": "ues@gmail.com",
+			"displayName": null,
+			"email": "ues@gmail.com",
+			"phoneNumber": null,
+			"photoURL": null
+		}
+	],
+	"stsTokenManager": {
+		"refreshToken": "AMf-vBzOkOdzaHmEN8bygODIKS84W8oFuuZkCH_O9-4-cOHYM7Fgh-d2QPhduN5SBhPmTWhnKagbaB5lFbOIy0mDSJwJuMU2UjE5QDsoMBNGQGYJz8WCnfX7sIuyybrdLoC9KtOsYf82OEoqIwLOPdWILKJbRo1sIc2FFuwrtHAlAaVHhhnMFxabEsZ0tAvTw7Jsecb7R1vhn-AweLozLUHKkCzs6eqLEw",
+		"accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImViYzIwNzkzNTQ1NzExODNkNzFjZWJlZDI5YzU1YmVmMjdhZDJjY2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGlnaXdhbGxldC15YXNoZCIsImF1ZCI6ImRpZ2l3YWxsZXQteWFzaGQiLCJhdXRoX3RpbWUiOjE3MTA5NDM5MDksInVzZXJfaWQiOiJwWklrSjcwbGR6UWFmSEZvVUowOFpwTldWR3kyIiwic3ViIjoicFpJa0o3MGxkelFhZkhGb1VKMDhacE5XVkd5MiIsImlhdCI6MTcxMDk0MzkwOSwiZXhwIjoxNzEwOTQ3NTA5LCJlbWFpbCI6InVlc0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidWVzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.sZkgnMPLrb8fM6GZZxyZtkVUH0GQBTnyvuS0ytTEPMhaa357aerdWmKr-R_DFzlGqMa_xuojQpY6LiXV-PjvT6aUWXTlmcnQ3R_ysMEgP7Ca73g83AhGSjpJbLiJUhPIlhTBPcRUGoHJcFoMmpoVZtRvId9TEBjzFFPHfy6AZ9u65XDGxTPXbYHQEw_yT_pV8YuTGsqatlfchvmBVuIoi1naoW3xYK3kC1PkC_uqaw7fTONCZ9bPGHxwyTw67A0Lm4_lDxVXr78YUxXVrEmIcyde7CVO7oKMy-HsRmN5RLheF2gqoVtE0hscyUSvMWL_YSFWss9VZms0eFMdlhmMAQ",
+		"expirationTime": 1710947509711
+	},
+	"createdAt": "1710943909186",
+	"lastLoginAt": "1710943909186",
+	"apiKey": "AIzaSyB11fSVPjCWGm4ntqiLSCwW4fckRQXJOmk",
+	"appName": "[DEFAULT]"
+}
