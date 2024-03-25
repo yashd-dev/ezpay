@@ -87,7 +87,7 @@ export default function GettingStarted() {
 				email: userData.email,
 			};
 			console.log(userData.uid);
-			await setDoc(doc(db, "users", upiId), user);
+			await setDoc(doc(db, "users", "gsdhgshdgsdhg"), user);
 		}
 	}
 	const uploadAvatar = async (event) => {
@@ -117,12 +117,13 @@ export default function GettingStarted() {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center mx-auto min-h-screen w-full p-2 bg-[#f6f5f0] ">
-			<div className="  bg-gray-50 space-y-10 rounded-2xl min-w-[50vw]  drop-shadow-lg md:flex flex-row justify-center items-center gap-2 mx-auto hidden px-20 py-10">
+		<div className="flex flex-col justify-center items-center mx-auto min-h-screen w-full p-2 bg-brand-backgroudSecondary ">
+			<div className="  bg-brand-backgroud space-y-10 rounded-2xl min-w-[50vw]  drop-shadow-lg md:flex flex-row justify-center items-center gap-2 mx-auto hidden px-14 py-10">
 				<span className=" space-y-4 w-full">
 					{userData.displayName ? (
-						<h1 className="text-2xl font-bold">
-							Welcome {userData.displayName}!
+						<h1 className="text-xl font-bold">
+							Welcome <br></br>
+							<br></br> {userData.displayName}!
 						</h1>
 					) : (
 						<h1 className="text-2xl font-bold">Welcome!</h1>

@@ -14,10 +14,16 @@ module.exports = withMT({
 		extend: {
 			colors: {
 				brand: {
-					base: "#EFEDEA",
-					surface: "#292524",
+					textPrimary: "hsla(0,0%,9%,1)",
+					textSecondary: "hsla(0,0%,40%,1)",
+					border: "hsla(0,0%,92%,1)",
+					borderHover: "hsla(0,0%,79%,1)",
+					backgroud: "hsla(0,0%,95%,1)",
+					backgroudSecondary: "hsla(0,0%,92%,1)",
+					backgroudTertiary: "#292524",
 					accent: "#26A269",
-					accent2: "#FF6961",
+					accent2: "hsla(124,60%,75%,1)",
+					accent3: "hsla(120,60%,95%,1)",
 				},
 			},
 		},

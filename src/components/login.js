@@ -13,58 +13,60 @@ import { Input, Button, Typography } from "@material-tailwind/react";
 function Login() {
 	const router = useRouter();
 	const [username, setUsername] = useState("");
+	const [usernameError, setUsernameError] = useState("");
 	const [password, setPassword] = useState("");
+	const [passwordError, setPasswordError] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 	const [isSignUp, setIsSignUp] = useState(false);
 
 	const handleUsernameChange = (e) => {
 		setUsername(e.target.value);
+		const re = /\S+@\S+\.\S+/;
+		if (!re.test(e.target.value)) {
+			setUsernameError("Please enter a valid email address");
+		} else setUsernameError("");
 	};
+	// Function to validate email and give real time error
 
 	const handlePasswordChange = (e) => {
 		setPassword(e.target.value);
-	};
-
-	const validateEmail = (email) => {
-		const re = /\S+@\S+\.\S+/;
-		return re.test(email);
-	};
-
-	const validatePassword = (password) => {
 		const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
-		return regex.test(password);
+		if (!regex.test(e.target.value)) {
+			let error = "Password must contain ";
+			if (e.target.value.length < 6) {
+				error += "at least 6 characters, ";
+			}
+			if (!/[a-z]/.test(e.target.value)) {
+				error += "lowercase letters, ";
+			}
+			if (!/[A-Z]/.test(e.target.value)) {
+				error += "uppercase letters, ";
+			}
+			if (!/\d/.test(e.target.value)) {
+				error += "numbers, ";
+			}
+			error = error.slice(0, -2); // Remove the last comma and space
+			setPasswordError(error);
+		} else setPasswordError("");
 	};
+	// Function to validate password and give real time error
 
 	const SignUp = async () => {
 		setLoading(true);
-		console.log("username:", username);
-		console.log("password:", password);
 		if (!username || !password) {
 			setError("Please enter both username and password");
 			setLoading(false);
 			return;
 		}
 
-		if (!validateEmail(username)) {
-			setError("Please enter a valid email address");
-			setLoading(false);
-			return;
-		}
-
-		if (!validatePassword(password)) {
-			setError("Please enter a valid password");
-			setLoading(false);
-			return;
-		}
 		createUserWithEmailAndPassword(auth, username, password)
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
 				console.log(user);
 				localStorage.setItem("user", JSON.stringify(user));
-
-				// ...
+				router.push("/getting-started");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -73,38 +75,21 @@ function Login() {
 				setError(errorMessage);
 			});
 		setLoading(false);
-		router.push("/getting-started");
 	};
 
 	const Login = async () => {
 		setLoading(true);
-		console.log("username:", username);
-		console.log("password:", password);
 		if (!username || !password) {
 			setError("Please enter both username and password");
 			setLoading(false);
 			return;
 		}
-
-		if (!validateEmail(username)) {
-			setError("Please enter a valid email address");
-			setLoading(false);
-			return;
-		}
-
-		if (!validatePassword(password)) {
-			setError("Please enter a valid password");
-			setLoading(false);
-			return;
-		}
 		signInWithEmailAndPassword(auth, username, password)
 			.then((userCredential) => {
-				// Signed in
 				const user = userCredential.user;
 				console.log(user);
 				localStorage.setItem("user", JSON.stringify(user));
-
-				// ...
+				router.push("/getting-started");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -128,6 +113,7 @@ function Login() {
 			const res = await signInWithPopup(auth, provider);
 			console.log(res.user);
 			localStorage.setItem("user", JSON.stringify(res.user));
+			router.push("/getting-started");
 		} catch (err) {
 			console.error(err);
 			setLoading(false);
@@ -137,17 +123,25 @@ function Login() {
 
 	return (
 		<>
-			<div className="  bg-gray-50 space-y-10 rounded-2xl  drop-shadow-lg md:flex flex-row justify-center items-center gap-10 mx-auto hidden">
-				<div className=" flex flex-col justify-center items-start gap-8 bg-brand-surface p-14 rounded-2xl">
+			<div className=" bg-transparent  md:bg-brand-backgroud space-y-10 md:rounded-2xl  md:drop-shadow-lg md:flex flex-row justify-center items-center gap-10 mx-auto  md:border border-brand-border ">
+				<div className=" flex flex-col mx-auto justify-center items-center md:items-start gap-8  w-screen md:w-full md:bg-brand-backgroudTertiary md:p-20 rounded-2xl">
 					<Typography
 						variant="h1"
-						className=" font-extrabold text-brand-base"
+						className=" font-extrabold md:text-brand-border"
 					>
 						<span className="italic">Ez</span>Pay
 					</Typography>
+					<Typography
+						variant="h5"
+						className=" font-normal md:hidden italic md:text-brand-border"
+						color="green"
+						textGradient
+					>
+						Your One Stop Payment Solution
+					</Typography>
 
 					<svg
-						className="w-64"
+						className="w-64 hidden md:block"
 						viewBox="0 0 348 279"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -270,17 +264,20 @@ function Login() {
 				</div>
 
 				<form
-					className=" space-y-2 p-10 rounded-2xl"
+					className=" space-y-2  p-10 rounded-2xl h-full w-full"
 					onSubmit={handleSubmit}
 				>
 					<Input
 						size="lg"
 						label="Enter Email"
-						variant="standard"
+						variant="outlined"
 						type="email"
 						value={username}
 						onChange={handleUsernameChange}
 					/>
+					{usernameError && (
+						<span className="text-red-500"> {usernameError} </span>
+					)}
 					<br />
 
 					<Input
@@ -288,15 +285,99 @@ function Login() {
 						label="Enter Password"
 						value={password}
 						type="password"
-						variant="standard"
+						variant="outlined"
 						onChange={handlePasswordChange}
 					/>
+					{passwordError && (
+						<span className="text-red-500"> {passwordError} </span>
+					)}
 					<br />
-					<span className="flex  gap-4 w-full">
+					<span className=" flex flex-row gap-5 justify-around py-5 md:py-0 md:block">
+						<span className="flex flex-col md:flex-row  gap-4 md:py-3 w-full">
+							{loading ? (
+								<Button
+									size="lg"
+									className="w-full md:w-fit  bg-brand-accent"
+									disabled
+								>
+									<svg
+										aria-hidden="true"
+										role="status"
+										className="mr-3 inline h-4 w-4 animate-spin rounded-full bg-slate-800 text-white "
+										viewBox="0 0 100 101"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+											fill="#E5E7EB"
+										/>
+										<path
+											d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+											fill="currentColor"
+										/>
+									</svg>
+									Loading...
+								</Button>
+							) : (
+								<Button
+									type="submit"
+									size="lg"
+									className="w-full  md:w-1/2  bg-brand-accent"
+									onClick={SignUp}
+								>
+									Sign Up
+								</Button>
+							)}
+							{loading ? (
+								<Button
+									size="lg"
+									variant="outlined"
+									color="blue-gray"
+									className="hidden md:flex w-full  items-center gap-3 p-3"
+									onClick={handleClick}
+								>
+									<svg
+										aria-hidden="true"
+										role="status"
+										className="mr-3 inline h-4 w-4 animate-spin rounded-full bg-slate-800 text-black "
+										viewBox="0 0 100 101"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+											fill="#E5E7EB"
+										/>
+										<path
+											d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+											fill="currentColor"
+										/>
+									</svg>
+									Loading...
+								</Button>
+							) : (
+								<Button
+									size="lg"
+									variant="outlined"
+									color="blue-gray"
+									className="hidden md:flex w-full items-center gap-3 p-3"
+									onClick={handleClick}
+								>
+									<img
+										src="https://docs.material-tailwind.com/icons/google.svg"
+										alt="metamask"
+										className="h-6 w-6"
+									/>
+									Continue with Google
+								</Button>
+							)}
+						</span>
+
 						{loading ? (
 							<Button
 								size="lg"
-								className="w-fit bg-brand-accent"
+								className="w-full bg-brand-backgroudTertiary bg-opacity-85"
 								disabled
 							>
 								<svg
@@ -322,66 +403,25 @@ function Login() {
 							<Button
 								type="submit"
 								size="lg"
-								className="w-fit bg-brand-accent"
-								onClick={SignUp}
+								className="w-full bg-brand-backgroudTertiary bg-opacity-85"
+								onClick={Login}
 							>
-								Sign Up
-							</Button>
-						)}
-						{loading ? (
-							<Button
-								size="lg"
-								variant="outlined"
-								color="blue-gray"
-								className="flex items-center gap-3 p-3"
-								onClick={handleClick}
-							>
-								<svg
-									aria-hidden="true"
-									role="status"
-									className="mr-3 inline h-4 w-4 animate-spin rounded-full bg-slate-800 text-black "
-									viewBox="0 0 100 101"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-										fill="#E5E7EB"
-									/>
-									<path
-										d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-										fill="currentColor"
-									/>
-								</svg>
-								Loading...
-							</Button>
-						) : (
-							<Button
-								size="lg"
-								variant="outlined"
-								color="blue-gray"
-								className="flex items-center gap-3 p-3"
-								onClick={handleClick}
-							>
-								<img
-									src="https://docs.material-tailwind.com/icons/google.svg"
-									alt="metamask"
-									className="h-6 w-6"
-								/>
-								Continue with Google
+								Login
 							</Button>
 						)}
 					</span>
 					{loading ? (
 						<Button
 							size="lg"
-							className="w-full bg-brand-surface bg-opacity-85"
-							disabled
+							variant="outlined"
+							color="blue-gray"
+							className="md:hidden flex  w-full  items-center gap-3 p-3"
+							onClick={handleClick}
 						>
 							<svg
 								aria-hidden="true"
 								role="status"
-								className="mr-3 inline h-4 w-4 animate-spin rounded-full bg-slate-800 text-white "
+								className="mr-3 inline h-4 w-4 animate-spin rounded-full bg-slate-800 text-black "
 								viewBox="0 0 100 101"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
@@ -399,70 +439,10 @@ function Login() {
 						</Button>
 					) : (
 						<Button
-							type="submit"
-							size="lg"
-							className="w-full bg-brand-surface bg-opacity-85"
-							onClick={Login}
-						>
-							Login
-						</Button>
-					)}
-					{error && (
-						<Typography variant="h6" color="red" textGradient>
-							{error}
-						</Typography>
-					)}
-				</form>
-			</div>
-			<div className="  space-y-10 rounded-2xl bg-[#f6f5f0]  drop-shadow-lg flex-col  justify-center items-center gap-10 mx-auto md:hidden">
-				<Typography
-					variant="h1"
-					className=" font-extrabold text-brand-surface w-fit mx-auto"
-				>
-					<span className="italic">Ez</span>Pay
-				</Typography>
-				<form className=" space-y-2 p-10 rounded-2xl">
-					<Input
-						size="lg"
-						label="Enter Username"
-						variant="standard"
-						value={username}
-						onChange={handleUsernameChange}
-					/>
-					<br />
-
-					<Input
-						size="lg"
-						label="Enter Password"
-						value={password}
-						type="password"
-						variant="standard"
-						onChange={handlePasswordChange}
-					/>
-					<br />
-					<span className="flex flex-col gap-4">
-						<Button
-							type="submit"
-							size="lg"
-							className="w-full bg-brand-accent"
-							onClick={SignUp}
-						>
-							Sign Up
-						</Button>
-						<Button
-							type="submit"
-							size="lg"
-							className="w-full bg-brand-surface bg-opacity-85"
-							onClick={Login}
-						>
-							Login
-						</Button>
-
-						<Button
 							size="lg"
 							variant="outlined"
 							color="blue-gray"
-							className="flex items-center gap-3 p-3 "
+							className="md:hidden w-full flex items-center mx-auto gap-3 p-3"
 							onClick={handleClick}
 						>
 							<img
@@ -472,7 +452,12 @@ function Login() {
 							/>
 							Continue with Google
 						</Button>
-					</span>
+					)}
+					{error && (
+						<Typography variant="h6" color="red" textGradient>
+							{error}
+						</Typography>
+					)}
 				</form>
 			</div>
 		</>
