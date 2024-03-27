@@ -2,8 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 export default function Dashboard({ children }) {
+	const pathname = usePathname();
+
 	const [userData, setUserData] = useState({});
 	const [displayPicture, setDisplayPicture] = useState("");
 
@@ -14,15 +18,23 @@ export default function Dashboard({ children }) {
 		}
 	}, []);
 	return (
-		<div className=" h-screen overflow-hidden flex flex-row">
-			<nav className=" bg-gray-100 w-full max-w-[20vw]  h-screen border-4 rounded-2xl flex flex-col justify-between items-start p-8 gap-5  ">
+		<div className=" h-screen overflow-hidden flex flex-row ">
+			<nav className=" bg-gray-100 w-full max-w-[20vw]  h-[98vh] m-auto border-4 rounded-2xl flex flex-col justify-between items-start p-8 gap-5  ">
 				<div>
-					<h1 className="block antialiased tracking-normal font-sans text-5xl leading-tight font-extrabold text-brand-textPrimary">
+					<h1 className="block antialiased tracking-normal  text-5xl leading-tight font-extrabold text-brand-textPrimary">
 						<span className="italic">Ez</span>Pay
 					</h1>
 				</div>
 				<div className=" flex flex-col justify-center items-start gap-5 text-brand-textSecondary ">
-					<span className=" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle">
+					<span
+						className={clsx(
+							" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle",
+							{
+								"bg-brand-accent text-white *:fill-white ":
+									pathname === "/dashboard/overview",
+							}
+						)}
+					>
 						<svg
 							className="-ml-2 w-14 h-8  inline-block group-hover:fill-white"
 							viewBox="0 0 90 90"
@@ -35,7 +47,15 @@ export default function Dashboard({ children }) {
 							Overview
 						</p>
 					</span>
-					<span className=" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle">
+					<span
+						className={clsx(
+							" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle",
+							{
+								"bg-brand-accent text-white *:fill-white ":
+									pathname === "/dashboard/transaction",
+							}
+						)}
+					>
 						<svg
 							className="-ml-2 w-14 h-8  inline-block group-hover:fill-white"
 							viewBox="0 0 90 90"
@@ -48,7 +68,15 @@ export default function Dashboard({ children }) {
 							Transactions
 						</p>
 					</span>
-					<span className=" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle">
+					<span
+						className={clsx(
+							" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle",
+							{
+								"bg-brand-accent text-white *:fill-white ":
+									pathname === "/dashboard/bills",
+							}
+						)}
+					>
 						<svg
 							className="-ml-2 w-14 h-8  inline-block group-hover:fill-white"
 							viewBox="0 0 90 90"
@@ -61,7 +89,15 @@ export default function Dashboard({ children }) {
 							Bills
 						</p>
 					</span>
-					<span className=" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle">
+					<span
+						className={clsx(
+							" hover:bg-brand-accent p-2 w-full rounded-lg group align-middle",
+							{
+								"bg-brand-accent text-white *:fill-white ":
+									pathname === "/dashboard/cards",
+							}
+						)}
+					>
 						<svg
 							className="-ml-2 w-14 h-8  inline-block group-hover:fill-white"
 							viewBox="0 0 90 90"
@@ -97,7 +133,7 @@ export default function Dashboard({ children }) {
 					)}
 				</div>
 			</nav>
-			<div className=" w-full max-w-[80vw] h-screen bg-brand-backgroudSecondary">
+			<div className=" w-full h-screen bg-brand-backgroudSecondary grid justify-center place-items-center items-center grid-cols-2 p-2 gap-2">
 				{children}
 			</div>
 		</div>

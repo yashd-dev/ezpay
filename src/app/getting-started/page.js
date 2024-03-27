@@ -87,7 +87,7 @@ export default function GettingStarted() {
 				email: userData.email,
 			};
 			console.log(userData.uid);
-			await setDoc(doc(db, "users", "gsdhgshdgsdhg"), user);
+			await setDoc(doc(db, "users", upiId), user);
 		}
 	}
 	const uploadAvatar = async (event) => {
