@@ -1,25 +1,32 @@
 {
-	"uid": "pZIkJ70ldzQafHFoUJ08ZpNWVGy2",
-	"email": "ues@gmail.com",
+	"uid": "L1WP8G24TLUfKvAb8sZrJVwtcEy1",
+	"email": "jj@gmail.com",
 	"emailVerified": false,
 	"isAnonymous": false,
 	"providerData": [
 		{
 			"providerId": "password",
-			"uid": "ues@gmail.com",
+			"uid": "jj@gmail.com",
 			"displayName": null,
-			"email": "ues@gmail.com",
+			"email": "jj@gmail.com",
 			"phoneNumber": null,
 			"photoURL": null
 		}
 	],
 	"stsTokenManager": {
-		"refreshToken": "AMf-vBzOkOdzaHmEN8bygODIKS84W8oFuuZkCH_O9-4-cOHYM7Fgh-d2QPhduN5SBhPmTWhnKagbaB5lFbOIy0mDSJwJuMU2UjE5QDsoMBNGQGYJz8WCnfX7sIuyybrdLoC9KtOsYf82OEoqIwLOPdWILKJbRo1sIc2FFuwrtHAlAaVHhhnMFxabEsZ0tAvTw7Jsecb7R1vhn-AweLozLUHKkCzs6eqLEw",
-		"accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImViYzIwNzkzNTQ1NzExODNkNzFjZWJlZDI5YzU1YmVmMjdhZDJjY2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGlnaXdhbGxldC15YXNoZCIsImF1ZCI6ImRpZ2l3YWxsZXQteWFzaGQiLCJhdXRoX3RpbWUiOjE3MTA5NDM5MDksInVzZXJfaWQiOiJwWklrSjcwbGR6UWFmSEZvVUowOFpwTldWR3kyIiwic3ViIjoicFpJa0o3MGxkelFhZkhGb1VKMDhacE5XVkd5MiIsImlhdCI6MTcxMDk0MzkwOSwiZXhwIjoxNzEwOTQ3NTA5LCJlbWFpbCI6InVlc0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidWVzQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.sZkgnMPLrb8fM6GZZxyZtkVUH0GQBTnyvuS0ytTEPMhaa357aerdWmKr-R_DFzlGqMa_xuojQpY6LiXV-PjvT6aUWXTlmcnQ3R_ysMEgP7Ca73g83AhGSjpJbLiJUhPIlhTBPcRUGoHJcFoMmpoVZtRvId9TEBjzFFPHfy6AZ9u65XDGxTPXbYHQEw_yT_pV8YuTGsqatlfchvmBVuIoi1naoW3xYK3kC1PkC_uqaw7fTONCZ9bPGHxwyTw67A0Lm4_lDxVXr78YUxXVrEmIcyde7CVO7oKMy-HsRmN5RLheF2gqoVtE0hscyUSvMWL_YSFWss9VZms0eFMdlhmMAQ",
-		"expirationTime": 1710947509711
+		"refreshToken": "AMf-vBwGsXgnTId0iP2IvzVllQnVbmpSq0p6IyXD26h-i0lb5WOsCDpYB533apaAu7Mk95dnhRWtBHhglC5Rn6Krvt4EK4IJo3lkp9oeO7hQTq95LgQEof9E0blikVWS3SRZ0Aw1WXyFwuUsFLNSVni0gxAF-Zf2-Lt3tqu80bmnGvl3eVXMKoZoeGfyv37FmKQGCSO95tCyT381Kly0tk24lpe5lqsqGQ",
+		"accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJhNjI1OTZmNTJmNTJlZDQ0MDQ5Mzk2YmU3ZGYzNGQyYzY0ZjQ1M2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGlnaXdhbGxldC15YXNoZCIsImF1ZCI6ImRpZ2l3YWxsZXQteWFzaGQiLCJhdXRoX3RpbWUiOjE3MTE3MDU0ODEsInVzZXJfaWQiOiJMMVdQOEcyNFRMVWZLdkFiOHNackpWd3RjRXkxIiwic3ViIjoiTDFXUDhHMjRUTFVmS3ZBYjhzWnJKVnd0Y0V5MSIsImlhdCI6MTcxMTcwNTQ4MSwiZXhwIjoxNzExNzA5MDgxLCJlbWFpbCI6ImpqQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJqakBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.o57X3p46yDxPQth0wryx90NfL0WsLSYeMpyuLTO8wtyeBCxtARlFfaQPVwmS4lEVAKR1N9O6lWlr0o2KapaAqFhIK_oPjzQDPyLLAlQU_sRjHYTkdg6kx_Y9LWEd7SAfVicPl4AwUm2SIOYraWliB3bPokOs0yArqjO_dPkdOA2umV-8MaEQVwv-A20cG5zVP5gBAfC3gwj_p8aatfyGD1-xoqUfT1wnaxCV8eDDaUICA028DvTlB1s2h_cn_UzF5JBgtgnkQRrEGNkHuCphswRSJxLRTeMCSyqz9GjCU7OcJomd7t7YkFwqnuHIFUNL6fu5Y75PjmMkxjsGRAwHcg",
+		"expirationTime": 1711709081796
 	},
-	"createdAt": "1710943909186",
-	"lastLoginAt": "1710943909186",
+	"createdAt": "1711705481432",
+	"lastLoginAt": "1711705481432",
 	"apiKey": "AIzaSyB11fSVPjCWGm4ntqiLSCwW4fckRQXJOmk",
-	"appName": "[DEFAULT]"
+	"appName": "[DEFAULT]",
+	"dbId": "-6940",
+	"photoURL": "https://firebasestorage.googleapis.com/v0/b/digiwallet-yashd.appspot.com/o/files%2F941338d4-b757-5600-be60-91641b306ebc?alt=media&token=850e6bed-ca50-4e34-b839-2fcfeeddf3ae",
+	"displayName": "Yesh",
+	"wallet": 0,
+	"cards": [],
+	"transactions": [],
+	"bills": []
 }

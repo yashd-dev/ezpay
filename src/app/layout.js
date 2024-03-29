@@ -1,9 +1,15 @@
 import "./globals.css";
-import { Open_Sans, IBM_Plex_Mono } from "next/font/google";
+import {
+	Open_Sans,
+	IBM_Plex_Mono,
+	Nunito_Sans,
+	DM_Sans,
+	Poppins,
+} from "next/font/google";
 
-export const open_sans = Open_Sans({
+export const open_sans = Poppins({
 	subsets: ["latin"],
-	display: "swap",
+	weight: ["100", "200", "300", "400", "500", "600", "700"],
 	variable: "--font-open_sans",
 });
 

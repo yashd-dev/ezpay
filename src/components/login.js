@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
 	createUserWithEmailAndPassword,
@@ -9,6 +9,16 @@ import {
 import { auth, provider } from "../lib/firebase";
 import { Icon } from "@iconify/react";
 import { Input, Button, Typography } from "@material-tailwind/react";
+import {
+	PiggyBank,
+	Bank,
+	HandCoins,
+	Wallet,
+	Coins,
+	CurrencyCircleDollar,
+	CreditCard,
+	CurrencyInr,
+} from "@phosphor-icons/react";
 
 function Login() {
 	const router = useRouter();
@@ -19,6 +29,13 @@ function Login() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 	const [isSignUp, setIsSignUp] = useState(false);
+
+	useEffect(() => {
+		const user = JSON.parse(localStorage.getItem("user"));
+		if (user) {
+			router.push("/dashboard/overview");
+		}
+	}, []);
 
 	const handleUsernameChange = (e) => {
 		setUsername(e.target.value);
@@ -123,18 +140,61 @@ function Login() {
 
 	return (
 		<>
-			<div className=" bg-transparent  md:bg-brand-backgroud space-y-10 md:rounded-2xl  md:drop-shadow-lg md:flex flex-row justify-center items-center gap-10 mx-auto  md:border border-brand-border ">
-				<div className=" flex flex-col mx-auto justify-center items-center md:items-start gap-8  w-screen md:w-full md:bg-brand-backgroudTertiary md:p-20 rounded-2xl">
+			<div className=" absolute md:hidden w-screen h-[28vh] rounded-b-xl inset-0 bg-[url('/CARD3.png')] bg-cover bg-no-  z-0 "></div>
+			{/* <PiggyBank
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className="absolute left-10 rotate-12 top-10 md:hidden"
+			/>
+			<Bank
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className=" absolute left-6 rotate-12 top-32"
+			/>
+			<HandCoins
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className=" absolute right-6 rotate-12 top-32"
+			/>
+			<Wallet
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className=" absolute right-6 rotate-12 top-12"
+			/>
+			<CurrencyInr
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className=" absolute left-[38vw] rotate-12 top-20"
+			/>
+			<Coins
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className=" absolute left-[60vw] rotate-12 top-8"
+			/>
+
+			<CurrencyCircleDollar
+				size={32}
+				color="#26a269"
+				weight="bold"
+				className=" absolute left-6 rotate-12 top-32"
+			/> */}
+			<div className="  bg-transparent  md:bg-brand-backgroud space-y-10 md:rounded-2xl  md:drop-shadow-lg md:flex flex-row justify-center items-center gap-10 mx-auto  md:border border-brand-border z-10 -mt-[10vh]">
+				<div className=" flex flex-col mx-auto justify-center items-center md:items-start gap-8 bg-transparent  w-screen md:w-full md:bg-brand-backgroudTertiary md:p-20 rounded-2xl">
 					<Typography
 						variant="h1"
-						className=" font-extrabold md:text-brand-border"
+						className=" font-extrabold text-7xl md:text-5xl text-brand-border"
 					>
 						<span className="italic">Ez</span>Pay
 					</Typography>
 					<Typography
-						variant="h5"
-						className=" font-normal md:hidden italic md:text-brand-border"
-						color="green"
+						variant="h6"
+						className=" font-normal md:hidden text-brand-border "
 						textGradient
 					>
 						Your One Stop Payment Solution
@@ -410,11 +470,19 @@ function Login() {
 							</Button>
 						)}
 					</span>
+					<div className="relative md:hidden">
+						<div className="absolute inset-0 flex items-center">
+							<div className="w-full   border-t border-brand-backgroudTertiary border-strong"></div>
+						</div>
+						<div className="relative flex justify-center text-sm z-10 my-5">
+							<span className="px-2 text-md font-semibold bg-studio bg-[#fafafa]">
+								or
+							</span>
+						</div>
+					</div>
 					{loading ? (
 						<Button
-							size="lg"
 							variant="outlined"
-							color="blue-gray"
 							className="md:hidden flex  w-full  items-center gap-3 p-3"
 							onClick={handleClick}
 						>
@@ -439,10 +507,7 @@ function Login() {
 						</Button>
 					) : (
 						<Button
-							size="lg"
-							variant="outlined"
-							color="blue-gray"
-							className="md:hidden w-full flex items-center mx-auto gap-3 p-3"
+							className="md:hidden w-full flex justify-center items-center mx-auto gap-3 p-3"
 							onClick={handleClick}
 						>
 							<img

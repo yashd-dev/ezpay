@@ -1,0 +1,7 @@
+This is a very incomplete project that i plan to continue even after the college project is over. I plan to add more features and make it more secure and robust. I plan to add more features like:
+
+-   Making it more secure, currently the firebase rules are very open
+-   Error handling and better UI
+-   Adding more features to the digital wallet
+-   Implementing a better way to categorize receipts
+-   Better Next.js and React practices
