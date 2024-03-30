@@ -1,27 +1,29 @@
 {
-	"uid": "JzZ0g07cQlOCOLU8fNJSMexTV982",
-	"email": "yashdeshpande714@gmail.com",
-	"emailVerified": true,
-	"displayName": "Yash D",
-	"isAnonymous": false,
-	"photoURL": "https://lh3.googleusercontent.com/a/ACg8ocL0cRi6qx0NyvamDoqU37vysjr0z_gH4BPyeqPs0hvbQG8=s96-c",
-	"providerData": [
+	"displayPicture": "https://lh3.googleusercontent.com/a/ACg8ocL0cRi6qx0NyvamDoqU37vysjr0z_gH4BPyeqPs0hvbQG8=s96-c",
+	"transactions": [],
+	"pin": "1423",
+	"bills": [
 		{
-			"providerId": "google.com",
-			"uid": "116897783117068767073",
-			"displayName": "Yash D",
-			"email": "yashdeshpande714@gmail.com",
-			"phoneNumber": null,
-			"photoURL": "https://lh3.googleusercontent.com/a/ACg8ocL0cRi6qx0NyvamDoqU37vysjr0z_gH4BPyeqPs0hvbQG8=s96-c"
+			"category": "Food",
+			"image": "https://firebasestorage.googleapis.com/v0/b/digiwallet-yashd.appspot.com/o/files%2Fbills%2F52dd152c-ab2a-5332-9bfd-a0ab67cd0cb7?alt=media&token=a924d48c-ea96-4be4-87d8-f7ad6c0b69a1",
+			"amount": " 8.68"
+		},
+		{
+			"image": "https://firebasestorage.googleapis.com/v0/b/digiwallet-yashd.appspot.com/o/files%2Fbills%2F52dd152c-ab2a-5332-9bfd-a0ab67cd0cb7?alt=media&token=414269aa-d437-41dc-9830-0294bd636873",
+			"category": "Food",
+			"amount": " 53.28"
 		}
 	],
-	"stsTokenManager": {
-		"refreshToken": "AMf-vBw5ckmMrT-n3kaZvBGseKcRXURhSodZcv7JPBRKukarvBRfTpYfnPOa1zF4AOCoHBFOBGirstFTcI-t-bH6BkCXXtI6rvNz6V5ak_7TmQNafBkJV9e58B9hMCAzbeqHkaeCQRlUVUb7m71PPUDwEZysWCiIJUS9q2Hp_UduqkFHdo1u3kDp46TMaA43gdhgvtWS_53OlCl8kJAUeStWXdqty5BBU0XEI0UkOMYu7ZiWekAJZxYjKD2FVWgx2Mr8T_Q5L0yXRzVNQMKSYc6k5Cc7Y_EB1VFyX_IRAoJQ2ES2Ylb-oLFozPU2wEOmv8BqYlbpuo6tpB97tKGQmNvSlxkpfotuzNZmZqhLkRptIMTTGwgqJk_jojz55dhs13RZM2wFIDiHAgCghticQFHbh3q8o_23PC3y87C58FR_fZlxC85Gr9Y",
-		"accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImViYzIwNzkzNTQ1NzExODNkNzFjZWJlZDI5YzU1YmVmMjdhZDJjY2IiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiWWFzaCBEIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0wwY1JpNnF4ME55dmFtRG9xVTM3dnlzanIwel9nSDRCUHllcVBzMGh2YlFHOD1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9kaWdpd2FsbGV0LXlhc2hkIiwiYXVkIjoiZGlnaXdhbGxldC15YXNoZCIsImF1dGhfdGltZSI6MTcxMDkzMTIwNCwidXNlcl9pZCI6Ikp6WjBnMDdjUWxPQ09MVThmTkpTTWV4VFY5ODIiLCJzdWIiOiJKelowZzA3Y1FsT0NPTFU4Zk5KU01leFRWOTgyIiwiaWF0IjoxNzEwOTMxMjA0LCJleHAiOjE3MTA5MzQ4MDQsImVtYWlsIjoieWFzaGRlc2hwYW5kZTcxNEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNjg5Nzc4MzExNzA2ODc2NzA3MyJdLCJlbWFpbCI6WyJ5YXNoZGVzaHBhbmRlNzE0QGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.p_vT6uE9i42nxBFWLHpvqOSx_tYQ--vEpuGsV7vXkUntYjSIRrJGxWmCuxmOj4UXzhlvCWB9tHw0RhiXuVIT4HSWCMWM5vwpyueQ1IPp0IKRITbgCuyqnOaMLCa18e0Yk8Rxx4GZHK0-QbZsZ_ugP4TuacFVNXkDiMYqdPn_KqckVeIX0HSvYVzhuDkzOFw6Bpgl8jSDVrS5E-pMVRrIHtbdQjTgOTumvkvqaLYtk3dMiLQaFPtNP4LkwH8iOR4mpuboISg3B9NbOdnm6eCGIdrSGPxS9PfKw8dE9bNgK-jPr4dlmf7JmM1FZjjCqlhP_a4IZa-G-FL2Lr_lO3OMHA",
-		"expirationTime": 1710934805030
-	},
-	"createdAt": "1710931204631",
-	"lastLoginAt": "1710931204632",
-	"apiKey": "AIzaSyB11fSVPjCWGm4ntqiLSCwW4fckRQXJOmk",
-	"appName": "[DEFAULT]"
+	"id": "JzZ0g07cQlOCOLU8fNJSMexTV982",
+	"displayName": "Yash D",
+	"email": "yashdeshpande714@gmail.com",
+	"upiId": "347150987840",
+	"cards": [],
+	"transaction": [
+		{ "amount": 1222, "name": "Recharge" },
+		{ "amount": 111, "name": "Recharge" },
+		{ "amount": 17162, "name": "Recharge" },
+		{ "name": "Recharging Wallet", "amount": 97200 }
+	],
+	"wallet": 119519
 }

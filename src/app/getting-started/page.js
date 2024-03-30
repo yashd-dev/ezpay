@@ -145,7 +145,7 @@ export default function GettingStarted() {
 		<>
 			<div className=" gradient-bg w-screen h-screen -z-10"></div>
 			<div className="flex flex-col justify-center items-center mx-auto min-h-screen w-full p-2 bg-brand-backgroudSecondary ">
-				<div className="  bg-brand-backgroud space-y-10 rounded-2xl min-w-[50vw]  drop-shadow-lg md:flex flex-row justify-center items-center gap-2 mx-auto hidden px-14 py-10">
+				<div className="  md:bg-brand-background space-y-10 rounded-2xl w-full md:in-w-[50vw] md:max-w-[50vw]  drop-shadow-lg flex flex-col md:flex-row justify-center items-center gap-2 mx-auto px-14 py-10 overflow-clip">
 					<span className=" space-y-4 w-full">
 						{userData.displayName ? (
 							<h1 className="text-xl font-bold">
@@ -169,7 +169,7 @@ export default function GettingStarted() {
 					</span>
 
 					<form
-						className=" space-y-5 px-10 rounded-2xl w-full"
+						className=" space-y-5 md:px-10 rounded-2xl w-full"
 						onSubmit={handleSubmit}
 					>
 						{userData.displayName ? (

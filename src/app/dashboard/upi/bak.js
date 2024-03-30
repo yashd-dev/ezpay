@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import QrReader from "react-qr-scanner";
-import { doc, getDoc, increment, updateDoc } from "firebase/firestore";
+import { doc, getDoc, increment } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Scanner } from "@yudiel/react-qr-scanner";
 
@@ -25,21 +25,15 @@ export default function UPI() {
 	const [error, setError] = useState("");
 	const [payee, setPayee] = useState({});
 	const [userData, setUserData] = useState({});
+
 	const [open, setOpen] = React.useState(false);
-	const handleOpen = () => setOpen(!open);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const user = JSON.parse(localStorage.getItem("user"));
-			setUserData(user);
-			const payerDocRef = doc(db, "user", user.upiId);
-			await getDoc(payerDocRef).then((doc) => {
-				localStorage.setItem("user", JSON.stringify(doc.data()));
-				setUserData(doc.data());
-			});
-		};
-		fetchData();
+		const user = JSON.parse(localStorage.getItem("user"));
+		setUserData(user);
 	}, []);
+
+	const handleOpen = () => setOpen(!open);
 
 	const handleScanError = (err) => {
 		console.error(err);
@@ -48,25 +42,45 @@ export default function UPI() {
 
 	const handleScanResult = (data) => {
 		if (data) {
-			setScannedUserId(data.text);
+			const user = JSON.parse(localStorage.getItem("user"));
+			setUserData(user);
+			console.log(user);
+
 			setShowScanner(false);
 			setConfirmationMessage("");
+
+			qrScannerRef.current.stop();
+			fetchUserDetails(data.text);
+		}
+	};
+
+	const fetchUserDetails = async (uid) => {
+		const scannedUserId = uid;
+		const docRef = doc(db, "user", scannedUserId);
+		const docSnap = await getDoc(docRef);
+		if (docSnap.exists()) {
+			console.log("Document data:", docSnap.data());
+			setPayee(docSnap.data());
+			setError("");
+			setScannedUserId(scannedUserId);
+		} else {
+			setError("User not found. Please scan a valid QR Code.");
 		}
 	};
 
 	const handlePayment = async (e) => {
 		e.preventDefault();
 		const amount = e.target.amount.value;
-		const pin = e.target.pin.value;
 		const user = JSON.parse(localStorage.getItem("user"));
+		setUserData(user);
+		console.log("local storage se", user);
+
+		// Add payment logic here
 		if (amount > 0) {
-			if (user.wallet >= amount && user.pin == pin) {
+			if (user.wallet >= amount) {
 				const payeeDocRef = doc(db, "user", scannedUserId);
-				const payerDocRef = doc(db, "user", user.upiId);
-				const payerRecept = {
-					name: `You Payed ${payee.displayName} `,
-					amount: parseInt(e.target.amount.value),
-				};
+				const payerDocRef = doc(db, "user", userData.uid);
+
 				await updateDoc(payeeDocRef, {
 					wallet: increment(amount),
 				});
@@ -90,51 +104,45 @@ export default function UPI() {
 		}
 	};
 
-	const ComponentC = dynamic(() => import("react-qr-scanner"), {
-		ssr: false,
-	});
-
 	return (
-		<div>
+		<div className=" bg-white rounded-2xl p-10">
 			{showScanner && (
-				<ComponentC
-					ref={qrScannerRef}
-					delay={300}
-					onError={handleScanError}
-					onScan={handleScanResult}
-					style={{ width: "100%" }}
-					constraints={{
-						audio: false,
-						video: { facingMode: "environment" },
-					}}
-				/>
-			)}
-
-			{scannedUserId && (
 				<>
-					<div>
-						<Typography>
-							{error && <h1>{error}</h1>}
-							{confirmationMessage && (
-								<h1>{confirmationMessage}</h1>
-							)}
-						</Typography>
-						<Typography variant="h4" className=" pb-5">
-							Scan Successful
-						</Typography>
-						<Typography variant="h1">
-							Scanned User ID: {scannedUserId}
-						</Typography>
-						<Typography variant="h1">
-							Payee Name: {payee.displayName}{" "}
-						</Typography>
-						<Typography variant="h1">
-							Payee Email: {payee.email}{" "}
-						</Typography>
-						<Button color="blue" onClick={handleOpen}>
-							Proceed to Payment
-						</Button>
-					</div>
+					<Typography variant="h4" className=" pb-5">
+						Scan the UPI QR Code To Make Payment
+					</Typography>
+					<QrReader
+						onResult={handleScanResult}
+						style={{ width: "100%" }}
+						constraints={{
+							audio: false,
+							video: { facingMode: "environment" },
+						}}
+						ref={qrScannerRef}
+					/>
+				</>
+			)}
+			{scannedUserId && (
+				<div>
+					<Typography>
+						{error && <h1>{error}</h1>}
+						{confirmationMessage && <h1>{confirmationMessage}</h1>}
+					</Typography>
+					<Typography variant="h4" className=" pb-5">
+						Scan Successful
+					</Typography>
+					<Typography variant="h1">
+						Scanned User ID: {scannedUserId}
+					</Typography>
+					<Typography variant="h1">
+						Payee Name: {payee.displayName}{" "}
+					</Typography>
+					<Typography variant="h1">
+						Payee Email: {payee.email}{" "}
+					</Typography>
+					<Button color="blue" onClick={handleOpen}>
+						Proceed to Payment
+					</Button>
 					<Dialog open={open} handler={handleOpen}>
 						<DialogHeader toggler={handleOpen}>
 							Confirm Payment
@@ -150,17 +158,6 @@ export default function UPI() {
 									placeholder="Amount"
 									name="amount"
 								/>
-								<Input
-									type="password"
-									placeholder="Pin"
-									name="pin"
-								/>
-								<Typography>
-									{error && <h1>{error}</h1>}
-									{confirmationMessage && (
-										<h1>{confirmationMessage}</h1>
-									)}
-								</Typography>
 							</DialogBody>
 							<DialogFooter>
 								<Button
@@ -182,7 +179,7 @@ export default function UPI() {
 							</DialogFooter>
 						</form>
 					</Dialog>
-				</>
+				</div>
 			)}
 		</div>
 	);

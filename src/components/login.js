@@ -184,7 +184,7 @@ function Login() {
 				weight="bold"
 				className=" absolute left-6 rotate-12 top-32"
 			/> */}
-			<div className="  bg-transparent  md:bg-brand-backgroud space-y-10 md:rounded-2xl  md:drop-shadow-lg md:flex flex-row justify-center items-center gap-10 mx-auto  md:border border-brand-border z-10 -mt-[10vh]">
+			<div className="  bg-transparent  md:bg-brand-backgroud space-y-10 md:rounded-2xl  md:drop-shadow-lg md:flex flex-row justify-center items-center gap-10 mx-auto  md:border border-brand-border -mt-[10vh] z-20">
 				<div className=" flex flex-col mx-auto justify-center items-center md:items-start gap-8 bg-transparent  w-screen md:w-full md:bg-brand-backgroudTertiary md:p-20 rounded-2xl">
 					<Typography
 						variant="h1"
