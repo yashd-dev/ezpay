@@ -475,7 +475,7 @@ function Login() {
 							<div className="w-full   border-t border-brand-backgroudTertiary border-strong"></div>
 						</div>
 						<div className="relative flex justify-center text-sm z-10 my-5">
-							<span className="px-2 text-md font-semibold bg-studio bg-[#fafafa]">
+							<span className="px-2 text-md font-semibold bg-studio bg-inherit">
 								or
 							</span>
 						</div>

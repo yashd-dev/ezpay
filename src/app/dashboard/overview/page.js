@@ -94,7 +94,7 @@ export default function Overview() {
 
 	async function addAmountWallet(e) {
 		e.preventDefault();
-		console.log(userData.upiID);
+		console.log(parseInt(e.target.amount.value));
 		const userDoc = doc(db, "user", userData.upiId);
 
 		const bill = {
@@ -102,11 +102,14 @@ export default function Overview() {
 			amount: parseInt(e.target.amount.value),
 		};
 
+		const transaction = userData.transaction || []; // Add this line to handle the case when userData.transaction is undefined
+
 		await updateDoc(userDoc, {
 			wallet: increment(parseInt(e.target.amount.value)),
-			transaction: [...userData.transaction, bill],
+			transaction: [...transaction, bill],
 		});
 		await getDoc(userDoc).then((doc) => {
+			console.log(doc.data());
 			localStorage.setItem("user", JSON.stringify(doc.data()));
 			setUserData(doc.data());
 		});
@@ -345,12 +348,12 @@ export default function Overview() {
 							userData.bills.slice(-2).map((bill, index) => (
 								<div
 									key={`bill${index}`}
-									className=" bg-brand-backgroudTertiary p-3 w-full rounded-2xl space-y-3 text-brand-background max-h-fit"
+									className=" bg-brand-backgroudTertiary p-3 rounded-2xl space-y-3 text-brand-background "
 								>
 									<Image
 										src={bill.image}
 										alt="Bill"
-										className="rounded-2xl w-full"
+										className="rounded-2xl object-cover max-h-[200px]"
 										width={300}
 										height={300}
 									/>
